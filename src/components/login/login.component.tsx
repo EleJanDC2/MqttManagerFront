@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios"
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-
-import './login.css'
 import {useNavigate} from "react-router-dom";
+import style from "./login.module.css"
+// import dotenv from 'dotenv';
 
 const Login: React.FC = () => {
     const signIn = useSignIn();
@@ -15,6 +15,9 @@ const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // useEffect(() => {
+    //     dotenv.config();
+    // }, []);
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
@@ -49,13 +52,9 @@ const Login: React.FC = () => {
             });
 
             if(response.status == 200){
-                console.log('response', response)
+                console.log("Zalogowano pomyślnie.")
                 signIn({auth: {token: response.data.JWT}, userState: {username: usernameValue, email: emailValue}})
-                console.log('zalogowano');
-                console.log('token: ', response.data.JWT)
-                navigate('/menu');
-                console.log('menu');
-
+                navigate('/mainScreen');
             } else {
                 console.error('Coś poszło bardzo nie tak');
             }
@@ -67,30 +66,31 @@ const Login: React.FC = () => {
 
     }
     return (
-       <div className='wrapper'>
+       <div className={style.wrapper}>
            <form onSubmit={onSubmit}>
                <h1>Login</h1>
-               <div className='inputBox'>
-                   <input type='text' placeholder='username' required onChange={(e) => setUsername(e.target.value)}/>
-                   <FaUser className='icon'/>
+               <div className={style.inputBox}>
+                   <input className={style.input} type='text' placeholder='username' required onChange={(e) => setUsername(e.target.value)}/>
+                   <FaUser className={style.icon}/>
                </div>
-               <div className='inputBox'>
-                   <input type='text' placeholder='email' required onChange={(e) => setEmail(e.target.value)}/>
-                   <MdEmail className='icon'/>
+               <div className={style.inputBox}>
+                   <input className={style.input} type='text' placeholder='email' required onChange={(e) => setEmail(e.target.value)}/>
+                   <MdEmail className={style.icon}/>
                </div>
-               <div className='inputBox'>
-                   <input type='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)}/>
-                   <FaLock className='icon'/>
+               <div className={style.inputBox}>
+                   <input className={style.input} type='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)}/>
+                   <FaLock className={style.icon}/>
                </div>
-               <div className='rememberForgot'>
+               <div className={style.rememberForgot}>
                    <label> <input type='checkbox' />Remember me </label>
-                   <a href="#">Forgot password?</a>
+                   <a className={style.forgotPassword} href="#">Forgot password?</a>
                </div>
-               <button type='submit'>Login</button>
-               <div className='registerLink'>
-                   <p>Don't have an account? <a href='#'>Register</a></p>
+               <div>
+                   <button type='submit'>Login</button>
                </div>
-
+               <div className={style.registerLink}>
+                   <p>Don't have an account? <a href='/registration'>Register</a></p>
+               </div>
            </form>
        </div>
     );
