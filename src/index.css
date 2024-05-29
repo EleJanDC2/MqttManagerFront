@@ -1,3 +1,15 @@
-:root {
+:root{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(#4c881f, #830000);
+}
 
+.save{
+    height: 100vh;
+    background: linear-gradient(#2A00B7, #42006C);
 }
