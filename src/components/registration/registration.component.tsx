@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios"
+import React, {useState} from "react";
 import useSignIn from "react-auth-kit/hooks/useSignIn";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import {useNavigate} from "react-router-dom";
-import style from "./login.module.css"
+import style from "../login/login.module.css";
 // import dotenv from 'dotenv';
 
-const Login: React.FC = () => {
+const Registration: React.FC = () => {
     const signIn = useSignIn();
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
         try{
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             // const response = (await axios.get("http://localhost:3100/api/user/login"));
-            const response = await axios.post("http://localhost:3100/api/user/login", data, {
+            const response = await axios.post("http://localhost:3100/api/user/createNewUser", data, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -65,35 +65,33 @@ const Login: React.FC = () => {
 
 
     }
+
     return (
-       <div className={style.wrapper}>
-           <form onSubmit={onSubmit}>
-               <h1>Login</h1>
-               <div className={style.inputBox}>
-                   <input className={style.input} type='text' placeholder='username' required onChange={(e) => setUsername(e.target.value)}/>
-                   <FaUser className={style.icon}/>
-               </div>
-               <div className={style.inputBox}>
-                   <input className={style.input} type='text' placeholder='email' required onChange={(e) => setEmail(e.target.value)}/>
-                   <MdEmail className={style.icon}/>
-               </div>
-               <div className={style.inputBox}>
-                   <input className={style.input} type='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)}/>
-                   <FaLock className={style.icon}/>
-               </div>
-               <div className={style.rememberForgot}>
-                   <label> <input type='checkbox' />Remember me </label>
-                   <a className={style.forgotPassword} href="#">Forgot password?</a>
-               </div>
-               <div>
-                   <button type='submit'>Login</button>
-               </div>
-               <div className={style.registerLink}>
-                   <p>Don't have an account? <a href='/registration'>Register</a></p>
-               </div>
-           </form>
-       </div>
+        <div className={style.wrapper}>
+            <form onSubmit={onSubmit}>
+                <h1>Registration</h1>
+                <div className={style.inputBox}>
+                    <input className={style.input} type='text' placeholder='username' required onChange={(e) => setUsername(e.target.value)}/>
+                    <FaUser className={style.icon}/>
+                </div>
+                <div className={style.inputBox}>
+                    <input className={style.input} type='text' placeholder='email' required onChange={(e) => setEmail(e.target.value)}/>
+                    <MdEmail className={style.icon}/>
+                </div>
+                <div className={style.inputBox}>
+                    <input className={style.input} type='password' placeholder='password' required onChange={(e) => setPassword(e.target.value)}/>
+                    <FaLock className={style.icon}/>
+                </div>
+                <div className={style.rememberForgot}>
+                    <label> <input type='checkbox' />Remember me </label>
+                </div>
+                <div>
+                    <button type='submit'>Login</button>
+                </div>
+            </form>
+        </div>
     );
+
 }
 
-export default Login;
+export default Registration;

@@ -1,9 +1,9 @@
-import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from "./components/login/login.component.tsx";
 // import RequireAuth from "react-auth-kit"
 import AuthOutlet from '@auth-kit/react-router/AuthOutlet'
-import Menu from "./components/menu/menu.component.tsx"
+import MainScrren from "./components/menu/mainScreen.component.tsx"
+import Registration from "./components/registration/registration.component.tsx";
 function App() {
 
   return (
@@ -11,8 +11,9 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/login" element={<Login />}> </Route>
+                <Route path="/registration" element={<Registration />}> </Route>
                 <Route element={<AuthOutlet fallbackPath='/login' />}>
-                    <Route path='/menu' element={<Menu/>} />
+                    <Route path='/menu' element={<MainScrren/>} />
                 </Route>
             </Routes>
         </Router>
