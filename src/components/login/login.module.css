@@ -1,10 +1,11 @@
 .wrapper{
     width: 420px;
-    background: transparent;
-    border: 2px solid rgba(255,255,255,.2);
-    box-shadow: 0 0 10px rgba(255,255,255,.2);
+    /*background: */
+    background: #333333;
+    border: 2px solid var(--foreground-color);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(30);
-    color: #fff;
+    color: var(--primaty-text-color);
     border-radius: 10px;
     padding: 30px 40px;
 }
@@ -28,10 +29,10 @@
     height: 100%;
     background: transparent;
     outline: none;
-    border: 2px solid rgba(255,255,255,.2);
+    border: 2px solid var(--foreground-color);
     border-radius: 40px;
     font-size: 16px;
-    color: #ffffff;
+    color: var(--primaty-text-color);
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -52,12 +53,12 @@
 }
 
 .rememberForgot label input {
-    accent-color: #ffffff;
+    accent-color: var(--primaty-text-color);
     margin-right: 4px;
 }
 
 .rememberForgot a {
-    color: #ffffff;
+    color: var(--primaty-text-color);
     text-decoration: none;
     margin-right: 4px;
 }
