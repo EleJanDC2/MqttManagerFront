@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from "axios"
 import useSignIn from "react-auth-kit/hooks/useSignIn";
 import { FaUser } from "react-icons/fa";
